@@ -15,6 +15,11 @@ function Shop() {
         setBasketShow(!isBasketShow);
     }
 
+    const removeFromBasket = (itemId) => {
+        const newOrder = order.filter(elem => elem.id !== itemId);
+        setOrder(newOrder);
+    }
+
     const addToBasket = (item) => {
         const itemIndex = order.findIndex(
             (orderItem) => orderItem.id === item.id
@@ -42,6 +47,36 @@ function Shop() {
         }
     }
 
+    const incQuantity = (itemId) => {
+        const newOrder = order.map(orderItem => {
+            if (orderItem.id === itemId) {
+                return {
+                    ...orderItem,
+                    quantity: orderItem.quantity + 1,
+                }
+            } else {
+                return orderItem;
+            }
+        })
+
+        setOrder(newOrder);
+    }
+
+    const decQuantity = (itemId) => {
+        const newOrder = order.map(orderItem => {
+            if (orderItem.id === itemId) {
+                return {
+                    ...orderItem,
+                    quantity: orderItem.quantity > 1 ? orderItem.quantity - 1 : 1,
+                }
+            } else {
+                return orderItem;
+            }
+        })
+
+        setOrder(newOrder);
+    }
+
     useEffect(function getDoods() {
         fetch(API_URL, {
             headers: {
@@ -59,7 +94,12 @@ function Shop() {
             loading ? <Preloader /> : <GoodsList goods={goods} addToBasket={addToBasket}/>
         }
         {
-            isBasketShow && <BasketList order={order} handleBasketShow={handleBasketShow}/>
+            isBasketShow && <BasketList 
+                order={order} 
+                handleBasketShow={handleBasketShow} 
+                removeFromBasket={removeFromBasket} 
+                incQuantity={incQuantity} 
+                decQuantity={decQuantity}/>
         }
     </main>
 }
