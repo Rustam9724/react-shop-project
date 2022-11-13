@@ -1,5 +1,13 @@
 function BasketItem(props) {
-    const {id, name, price, quantity, removeFromBasket = Function.prototype, incQuantity = Function.prototype, decQuantity = Function.prototype} = props;
+    const {
+            id, 
+            name, 
+            price, 
+            quantity, 
+            removeFromBasket = Function.prototype, 
+            incQuantity = Function.prototype, 
+            decQuantity = Function.prototype
+        } = props;
 
     return <li className="collection-item basket-item">
         {name} 

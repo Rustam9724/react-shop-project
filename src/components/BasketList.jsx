@@ -2,7 +2,7 @@ import {BasketItem} from './BasketItem'
 
 function BasketList(props) {
     const {
-        order, 
+        order = [], 
         handleBasketShow = Function.prototype, 
         removeFromBasket = Function.prototype, 
         incQuantity = Function.prototype,

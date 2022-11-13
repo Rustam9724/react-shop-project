@@ -9,6 +9,7 @@ function Alert(props) {
         return () => {
             clearInterval(timerId);
         }
+        // eslint-disable-next-line
     }, [name]);
 
     return (
