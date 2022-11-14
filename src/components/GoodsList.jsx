@@ -1,7 +1,10 @@
+import { useContext } from 'react';
+import { ShopContext } from '../context';
+
 import {GoodsItem} from './GoodsItem';
 
-function GoodsList(props) {
-    const {goods = [], addToBasket = Function.prototype, addQuantity = Function.prototype} = props;
+function GoodsList() {
+    const { goods = [] } = useContext(ShopContext)
 
     if (!goods.length) {
         return <h1>Not results</h1>
@@ -17,8 +20,6 @@ function GoodsList(props) {
                     description={good.displayDescription} 
                     image={good.displayAssets[0].full_background} 
                     price={good.price.regularPrice}
-                    addToBasket={addToBasket}
-                    addQuantity={addQuantity}
                     />
             })
         }
